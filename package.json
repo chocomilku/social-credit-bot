@@ -1,0 +1,27 @@
+{
+  "name": "social-credit-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chocomilku/social-credit-bot.git"
+  },
+  "author": "chocomilku",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chocomilku/social-credit-bot/issues"
+  },
+  "homepage": "https://github.com/chocomilku/social-credit-bot#readme",
+  "dependencies": {
+    "discord.js": "^13.3.0",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.1.0"
+  }
+}
