@@ -18,14 +18,14 @@ const rest = new REST({ version: '9' }).setToken(env.token);
 
 (async () => {
 	try {
-		console.log('Started registering Slash commands.');
+		console.log('Started registering Slash commands globally.');
 
 		await rest.put(
-			Routes.applicationGuildCommands(env.clientId, env.guildId),
-			{ body: commands },
-		);
+            Routes.applicationCommands(env.clientId),
+            { body: commands },
+        );
 
-		console.log('Successfully registered Slash commands.');
+		console.log('Successfully registered Slash commands globally.');
 	} catch (error) {
 		console.error(error);
 	}
