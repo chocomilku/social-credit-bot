@@ -27,13 +27,12 @@ client.on('interactionCreate', async interaction => {
       await command.execute(interaction);
     } catch (error) {
       const d = new Date();
-      console.error(`${d.toLocaleString()}: ${error} [${interaction.options.getString('search')}]`)
+      console.error(`${d.toLocaleString()}: ${error}`)
       const embedError = new MessageEmbed()
         .setColor('RED')
         .setTitle(`${error}`)
         .setTimestamp(d)
       await interaction.Reply({ content: `An Error has Occured. Please try again`, embeds: [embedError]})
-      console.error(error)
     }
   })
 
