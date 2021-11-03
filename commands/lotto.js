@@ -8,7 +8,12 @@ module.exports = {
         .setDescription('Tests your luck whether you win or lose social credit points'),
     async execute(interaction) {
         const message = rngLuck()
-        const embed = new MessageEmbed({color: 'WHITE', title: `${message}`})
+        const embed = new MessageEmbed({title: `${message.message}`})
+        if (message.win) {
+            embed.setColor('AQUA')
+        } else if (!message.win) {
+            embed.setColor('RED')
+        }
         await interaction.reply({embeds: [embed]})
     }
 }
