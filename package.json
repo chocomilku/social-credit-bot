@@ -1,7 +1,6 @@
 {
   "name": "social-credit-bot",
-  "version": "1.0.1",
-  "description": "",
+  "description": "discord bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
