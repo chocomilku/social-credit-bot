@@ -7,17 +7,39 @@ module.exports = {
         .setName('lotto')
         .setDescription('Tests your luck whether you win or lose social credit points'),
     async execute(interaction) {
-        const message = rngLuck()
-        const embed = new MessageEmbed({ title: `${message.message}` })
+
         const retry = new MessageActionRow()
             .addComponents(
                 new MessageButton({ customId: "retry", label: "Retry", style: "SECONDARY", emoji: "🔁" })
             )
-        if (message.win) {
-            embed.setColor('AQUA')
-        } else if (!message.win) {
-            embed.setColor('RED')
+
+        async function send(sent = false) {
+            const message = rngLuck()
+            const embed = new MessageEmbed({ title: `${message.message}` })
+            if (message.win) {
+                embed.setColor('AQUA')
+            } else if (!message.win) {
+                embed.setColor('RED')
+            }
+            if (!sent) {
+                await interaction.reply({ embeds: [embed], components: [retry] })
+            } else if (sent) {
+                await interaction.editReply({ embeds: [embed], components: [retry] })
+            }
         }
-        await interaction.reply({ embeds: [embed], components: [retry] })
+
+        send(false)
+
+        const collector = interaction.channel.createMessageComponentCollector({ componentType: 'BUTTON' });
+
+        collector.on('collect', i => {
+            if (i.user.id === interaction.user.id) {
+                send(true)
+                i.update({ components: [retry] })
+            } else {
+                i.reply({ content: `This button isn't for you!\nYou can run /lotto to run your instance of command`, ephemeral: true })
+            }
+        });
+
     }
 }
