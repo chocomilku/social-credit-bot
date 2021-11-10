@@ -32,14 +32,13 @@ module.exports = {
 
         const collector = interaction.channel.createMessageComponentCollector({ componentType: 'BUTTON' });
 
-        collector.on('collect', i => {
+        collector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
+                await i.deferUpdate()
                 send(true)
-                i.update({ components: [retry] })
             } else {
-                i.reply({ content: `This button isn't for you!\nYou can run /lotto to run your instance of command`, ephemeral: true })
+                await i.reply({ content: `This button isn't for you!\nYou can run /lotto to run your instance of command`, ephemeral: true })
             }
-        });
-
+        })
     }
 }

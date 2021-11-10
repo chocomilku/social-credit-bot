@@ -1,4 +1,4 @@
-const { Client, Intents, Collection, MessageEmbed } = require('discord.js')
+const { Client, Intents, Collection, MessageEmbed, Interaction } = require('discord.js')
 const { env } = require('./globals')
 const fs = require('fs')
 
